@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+
+	<aop:aspectj-autoproxy />
+	<aop:config proxy-target-class="true" />
+
+	<!-- <bean id="greetingTarget" class="spring.aop.GreetingServiceImpl">
+		<property name="greeting">
+			<value>Hello</value>
+		</property>
+	</bean> -->
+	<!-- <bean id="logAspect" class="spring.aop.LogAspect" />
+	<bean id="performanceAspect" class="spring.aop.PerformanceAspect" /> -->
+	<!-- <aop:config>
+		<aop:pointcut id="publicMethod"
+			expression="execution(public * *(..))" />
+		<aop:aspect ref="logAspect">
+			<aop:before method="beforeLogging"
+				pointcut-ref="publicMethod" />
+			<aop:after-returning method="afterLogging"
+				pointcut-ref="publicMethod" returning="returnValue" />
+			<aop:after-throwing method="throwingLogging"
+				pointcut-ref="publicMethod" throwing="ex" />
+			<aop:after method="alwaysLogging"
+				pointcut-ref="publicMethod" />
+		</aop:aspect>
+		<aop:aspect ref="performanceAspect">
+			<aop:around method="timeCheck" pointcut-ref="publicMethod" />
+		</aop:aspect>
+	</aop:config>
+ -->
+
+
+	<context:annotation-config />
+	<context:component-scan
+		base-package="spring.aop" />
+	<aop:aspectj-autoproxy />
+	<aop:config proxy-target-class="true" />
+</beans>

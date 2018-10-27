@@ -1,0 +1,42 @@
+package beauty.model;
+
+//고객
+public class CustomerReviewDTO {
+	
+	private String eid; //업체 ID
+	private String mid; //회원 ID
+	private String c_name; //이름
+	private String c_num; //전화 번호 
+	private String remainder; //회원권 잔여액
+	
+	public String getEid() {
+		return eid;
+	}
+	public void setEid(String eid) {
+		this.eid = eid;
+	}
+	public String getMid() {
+		return mid;
+	}
+	public void setMid(String mid) {
+		this.mid = mid;
+	}
+	public String getC_name() {
+		return c_name;
+	}
+	public void setC_name(String c_name) {
+		this.c_name = c_name;
+	}
+	public String getC_num() {
+		return c_num;
+	}
+	public void setC_num(String c_num) {
+		this.c_num = c_num;
+	}
+	public String getRemainder() {
+		return remainder;
+	}
+	public void setRemainder(String remainder) {
+		this.remainder = remainder;
+	}	
+}

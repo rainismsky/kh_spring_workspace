@@ -1,0 +1,10 @@
+package beauty.model;
+
+public class CustomerDTO {
+	
+	private String eid;
+	private String mid;
+	private String c_name;
+	private String c_num;
+
+}

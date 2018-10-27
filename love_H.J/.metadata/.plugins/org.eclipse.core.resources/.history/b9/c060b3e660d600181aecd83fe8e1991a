@@ -1,0 +1,28 @@
+package beauty.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import beauty.dao.ReviewDAO;
+
+@Controller
+public class ReviewController {
+
+	@Autowired //ºó °´Ã¼ ÀÚµ¿ ÁÖÀÔ
+	ReviewDAO reviewdao;
+	
+	// 1.°Ô½Ã±Û ¸ñ·Ï
+	@RequestMapping("MemberReview_list")
+	public ModelAndView list() throws Exception{
+		List<ReviewDTO> list = reviewdao.listAll();
+	}
+	
+	//ModelAndView - ¸ðµ¨°ú ºä
+	ModelAndView mav = new ModelAndView();
+	mav.setViewname("");
+	
+	
+
+}

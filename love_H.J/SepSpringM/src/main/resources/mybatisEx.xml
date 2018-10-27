@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+	<!-- DB 정보 파일을 로드한다 -->
+	<context:property-placeholder location="classpath:db.properties" />
+
+	<!-- DB 연결 -->
+	<bean id="dataSource"
+		class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+		<property name="driverClass" value="${jdbc.driver}" />
+		<property name="jdbcUrl" value="${jdbc.url}" />
+		<property name="user" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+	</bean>
+	
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+	<property name="dataSource" ref="dataSource"/>
+	<property name="mapperLocations" value="classpath:mybatis/*.xml"/>
+	</bean>
+	<!--위에적혀있는 내용을 이야기하는 것임. 여기까지 설정은 거의 변동이 없다고 한다. 외우자 -수진쌤- -->
+	
+	<bean id="memberDao" class="spring.mybatis.MemberDAO">
+		<property name="sqlSessionFactory">
+		<ref bean="sqlSessionFactory"/>
+		</property>
+	</bean>
+	
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+	<constructor-arg ref="sqlSessionFactory"/>
+	</bean>
+
+	</beans>

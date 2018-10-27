@@ -1,0 +1,23 @@
+package beauty.model;
+
+//¾÷Ã¼
+public class EntPrise {
+	
+	private String eid; // 
+	private String
+	private String
+	private String
+	private String
+	private String
+	private String
+	private String
+	private String
+	private String
+	private String
+	private String
+	private String
+	private String
+	private String
+	private String
+
+}

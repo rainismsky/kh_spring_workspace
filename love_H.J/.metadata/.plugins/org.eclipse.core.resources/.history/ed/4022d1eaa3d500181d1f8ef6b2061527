@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="board2">
+
+	<select id="list" resultType="spring.board.BoardDTO">
+		select * from board2
+	</select>
+
+	<insert id="insert" parameterType="spring.board.BoardDTO">
+		insert into
+		board(num,writer,content,subject,reg_date) values
+		(board_num_grp.nextval,#{writer},#{content},#{subject},sysdate)
+	</insert>
+
+	<delete id="deleteBoard" parameterType="int">
+		delete from board2 where
+		num = #{num}
+	</delete>
+
+	<select id="detailBoard" parameterType="int"
+		resultType="spring.board.BoardDTO">
+		select * from board2 where num = #{num}
+	</select>
+
+	<update id="updateBoard" parameterType="spring.board.BoardDTO">
+		update board2 set subject=
+		#{subject}, content= #{content}, writer=
+		#{writer},
+		readcount=#{readcount} where num= #{num}
+	</update>
+
+	<select id="selectpage" parameterType="map"
+		resultType="spring.board.BoardDTO">
+		<![CDATA[select num,writer,subject,reg_date,readcount,content, r from (select
+		num,writer,subject,reg_date,readcount,content,rownum r from board)
+		where r>=#{startRow} and r<=#{endRow} order by reg_Date desc]]>
+	</select>
+
+	<select id="count" resultType="int">
+		select count(*) from board2
+	</select>
+	
+	<select id="search" parameterType="map"
+		resultType="spring.board.BoardDTO">
+		select * from board2 where subject #{keyword} like #{search}
+	</select>
+ 
+</mapper>
+	

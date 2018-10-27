@@ -1,0 +1,54 @@
+package board;
+
+import java.util.List;
+
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+//(�씤�꽣�럹�씠�뒪 援ы쁽 �겢�옒�뒪)
+
+@Repository //�쁽 �겢�옒�뒪瑜� dao bean�쑝濡� �벑濡�
+public class BoardDAO implements BoardDAO{ 
+	
+	//implements <ex> a = c占쏙옙占� interface占쏙옙 占쏙옙占쏙옙 占싹겠댐옙 占쏙옙占싱댐옙.
+		
+	@Autowired
+	SqlSession sqlSession;
+	
+	//1.寃뚯떆湲� �옉�꽦
+	
+	public void create(BoardDTO vo)throws Exception{
+		sqlSession.insert("board.insert",vo);
+	}
+	
+	//2.寃뚯떆湲� �긽�꽭蹂닿린
+
+	public BoardDTO read(int bno)throws Exception{
+		return sqlSession.selectOne("board.view",bno);	
+	}
+	
+	//3.寃뚯떆湲� �닔�젙
+
+	public void update(BoardDTO vo)throws Exception{
+		sqlSession.update("board.updateArticle",vo);
+	}
+	
+	//4.寃뚯떆湲� �궘�젣
+	
+	public void delete(int bno)throws Exception{
+		sqlSession.delete("board.deleteArticle",bno);
+	}
+
+	//5.寃뚯떆湲� �쟾泥� 紐⑸줉
+	
+	public List<BoardDTO>listAll()throws Exception{
+		return sqlSession.selectList("board.listAll");
+	}
+	
+	//寃뚯떆湲� 議고쉶�닔 利앷�
+	
+	public void increaseViewcnt(int bno)throws Exception{
+		sqlSession.update("board.increaseViewcnt",bno);
+	}
+}

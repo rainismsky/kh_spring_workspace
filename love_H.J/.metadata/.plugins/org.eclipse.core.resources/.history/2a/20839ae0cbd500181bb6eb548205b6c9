@@ -1,0 +1,15 @@
+package beauty.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller //현재 클래스를 컨트롤러 빈(bean)으로 등록
+@RequestMapping("//*")
+public class ReviewController {
+	
+	@Autowired //빈 객체를 자동으로 주입 받을때 사용
+	
+	
+
+}

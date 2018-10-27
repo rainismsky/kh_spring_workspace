@@ -1,0 +1,20 @@
+INDEX VERSION 1.4+D:\love_H.J\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+3103026810.index
+919371027.index
+780258064.index
+2237540907.index
+919371027.index
+320732407.index
+3121394082.index
+3046104798.index
+1199292807.index
+3240079901.index
+1347282468.index
+3867638322.index
+2939268680.index
+1730780722.index
+3582805144.index
+2295614278.index
+3253522775.index
+2903136682.index
+582447224.index

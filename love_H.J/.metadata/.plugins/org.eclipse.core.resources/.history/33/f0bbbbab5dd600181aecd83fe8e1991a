@@ -1,0 +1,17 @@
+package beauty.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+
+import beauty.dao.ReviewDAO;
+
+@Controller
+public class ReviewController {
+
+	@Autowired
+	private ReviewDAO reviewdao;
+	
+	public void setReviewDAO(ReviewDAO reviewdao) {
+		this.reviewdao = reviewdao;
+	}
+}

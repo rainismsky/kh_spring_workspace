@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="edisposal">
+
+	<select id="list" resultType="disposal.DisposalDTO">
+		select
+		eq_no, eq_name, di_reason, di_regdate from
+		disposal
+	</select>
+
+	<select id="selectpage" parameterType="map"
+		resultType="disposal.DisposalDTO">
+		<![CDATA[select eq_no, eq_name, di_reason, di_regdate, r from (select
+		eq_no, eq_name, di_reason, di_regdate,rownum r from disposal)
+		where r>=#{startRow} and r<=#{endRow} order by di_regdate desc]]>
+	</select>
+
+	<select id="count" resultType="int">
+		select count(*) from purchase
+	</select>
+	
+</mapper>

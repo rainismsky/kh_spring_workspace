@@ -1,0 +1,29 @@
+1539843714950	Rename compilation unit 'QnAController.java'
+1539843729790	Rename package 'controller'
+1539843857910	Rename package 'review.controller'
+1539843970740	Rename type 'ReviewController'
+1539912657415	Delete element
+1539912669909	Rename package 'review'
+1539912693717	Rename type 'ReviewBoardController'
+1539912752801	Delete elements
+1539912774721	Delete element
+1539916370981	Delete element
+1539916740560	Rename package 'beayty.controller'
+1539918519108	Rename type 'EmpDTO'
+1539919755625	Rename type 'entprise'
+1539924908996	Rename type 'ReviewController'
+1539925012083	Rename type 'ReviewDAO'
+1539925084014	Rename type 'EntPrise'
+1539926927494	Rename resource 'boardMapper.xml'
+1539926953949	Copy file
+1539927422866	Rename resource 'MemberReview.jsp'
+1539927591294	Rename type 'ReviewDTO'
+1539927636985	Rename type 'EntPriseDTO'
+1539927644348	Rename type 'CustomerDTO'
+1539929183708	Rename resource 'MemberReview_view.jsp'
+1539930081638	Delete element
+1539930856314	Rename resource 'Review_Board.jsp'
+1539930898867	Delete element
+1539930907421	Rename resource 'MemberReview.jsp'
+1539933110904	Rename resource 'root-context.xml'
+1539933436975	Rename resource 'gh_root-context.xml'

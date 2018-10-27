@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aop-reference-model>
+<aop-project name="finalproject"/>
+<aop-project name="Spring_MVC"/>
+<aop-project name="SepSpringMvc"/>
+<aop-project name="BeautyInside"/>
+<aop-project name="FileUpload"/>
+<aop-project name="SepSpringM"/>
+<aop-project name="SpringBoard"/>
+</aop-reference-model>

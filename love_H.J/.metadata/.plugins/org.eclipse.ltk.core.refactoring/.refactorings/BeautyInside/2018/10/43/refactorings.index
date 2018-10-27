@@ -1,0 +1,43 @@
+1540175394365	Delete element
+1540175404378	Rename type 'EntpriseReviewController'
+1540175518252	Rename type 'ReviewController'
+1540175543512	Copy compilation unit
+1540186277404	Delete element
+1540186284927	Delete element
+1540187227305	Rename resource 'MemberReviewMapper.xml'
+1540188906369	Delete element
+1540189361059	Rename type 'MemberReviewDAO'
+1540189364531	Delete element
+1540192627392	Rename resource 'ReviewMapper.xml'
+1540192637541	Copy file
+1540192645035	Rename resource 'EntReviewMapper2.xml'
+1540192755082	Delete element
+1540192780980	Delete element
+1540192788899	Rename resource 'MemberReviewMapper.xml'
+1540192805892	Delete element
+1540192811374	Rename type 'MemberReviewDTO'
+1540193500480	Delete element
+1540193792286	Delete element
+1540257596186	Rename resource 'EntPriseReview.jsp'
+1540258473835	Move file
+1540258475261	Move file
+1540258728531	Delete element
+1540258736765	Rename resource 'MemberReview_list.jsp'
+1540258909417	Copy file
+1540258919117	Rename resource 'Review_write'
+1540258985029	Rename package 'beauty.dao'
+1540259099861	Rename resource 'review'
+1540259235184	Rename resource 'Review_list.jsp'
+1540259253473	Rename resource 'Review_view.jsp'
+1540259264716	Rename resource 'Review_write.jsp'
+1540261221401	Rename resource 'mybatis-config.xml'
+1540261324103	Rename resource 'gh-root-context.xml'
+1540261395239	Delete element
+1540261993643	Rename resource 'gh-dispatcher.xml'
+1540272198622	Rename resource 'gh-dispatcher-servlet.xml'
+1540272696284	Move folder
+1540272709266	Delete element
+1540369986748	Rename resource 'list.Review.jsp'
+1540369991866	Rename resource 'view.Review.jsp'
+1540369997522	Rename resource 'view-Review.jsp'
+1540370004726	Rename resource 'write.Review.jsp'

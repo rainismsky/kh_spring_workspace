@@ -1,0 +1,10 @@
+<%@ page contentType="text/html; charset=UTF-8" %>
+
+<html>
+<body>
+
+<h2>뷰티 인사이드</h2>
+
+<a href="Review/list.Review">후기 게시판</a>
+</body>
+</html>

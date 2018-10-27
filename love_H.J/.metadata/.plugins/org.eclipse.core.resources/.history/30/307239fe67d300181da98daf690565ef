@@ -1,0 +1,72 @@
+package beauty.model;
+
+import com.sun.jmx.snmp.Timestamp;
+
+//후기
+public class MemberReviewDTO {
+	
+	private int rno; //글 번호
+	private String mid; //작성자
+	private String rfile; //첨부 파일
+	private String rcontents; //글 내용
+	private Timestamp r_regdate; //작성일
+	private String r_grade; //작성일
+	private String eid; //답변 작성자(업체 ID)
+	private String ra_contents; //답글 내용
+	private Timestamp ra_regdate; //답글 작성일
+	
+	public int getRno() {
+		return rno;
+	}
+	public void setRno(int rno) {
+		this.rno = rno;
+	}
+	public String getMid() {
+		return mid;
+	}
+	public void setMid(String mid) {
+		this.mid = mid;
+	}
+	public String getRfile() {
+		return rfile;
+	}
+	public void setRfile(String rfile) {
+		this.rfile = rfile;
+	}
+	public String getRcontents() {
+		return rcontents;
+	}
+	public void setRcontents(String rcontents) {
+		this.rcontents = rcontents;
+	}
+	public Timestamp getR_regdate() {
+		return r_regdate;
+	}
+	public void setR_regdate(Timestamp r_regdate) {
+		this.r_regdate = r_regdate;
+	}
+	public String getR_grade() {
+		return r_grade;
+	}
+	public void setR_grade(String r_grade) {
+		this.r_grade = r_grade;
+	}
+	public String getEid() {
+		return eid;
+	}
+	public void setEid(String eid) {
+		this.eid = eid;
+	}
+	public String getRa_contents() {
+		return ra_contents;
+	}
+	public void setRa_contents(String ra_contents) {
+		this.ra_contents = ra_contents;
+	}
+	public Timestamp getRa_regdate() {
+		return ra_regdate;
+	}
+	public void setRa_regdate(Timestamp ra_regdate) {
+		this.ra_regdate = ra_regdate;
+	}
+}

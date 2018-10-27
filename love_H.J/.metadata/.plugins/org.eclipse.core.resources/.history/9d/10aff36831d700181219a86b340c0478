@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Review">
+	
+	<!-- 1.게시글 전체 목록 조회 -->
+	<select id="listAll" resultType="beauty.model.ReviewDTO">
+		SELECT
+		rno,
+		mid,
+		rfile,
+		rcontents,
+		r_regdate,
+		r_grade,
+		eid,
+		ra_contents,
+		ra_regdate
+		FROM
+		review
+		ORDER BY
+		rno desc,
+		r_regdate desc
+	</select>
+
+	<!-- 2.게시글 작성 -->
+	<insert id="insert">
+		INSERT INTO review(
+		rno,
+		rcontents,
+		mid,
+		r_regdate,
+		ra_regdate)
+		VALUES(
+		seq_review.nextval,
+		#{rno},
+		#{rcontents},
+		#{mid},
+		sysdate,
+		#{ra_regdate}
+		)
+		
+		<!-- (SELECT NVL(MAX(rno)+1,1)FROM review) -->
+	
+	</insert>
+
+	<!-- 3.게시글 상세보기 조회 -->
+	<select id="listview" resultType="beauty.model.ReviewDTO">
+		SELECT * FROM review
+		WHERE rno = #{rno}
+	</select>
+
+	<!-- 4.게시글 조회수 증가 -->
+	<update id="increaseView">
+		UPDATE review SET r_grade = r_grade+1
+		WHERE rno = #{rno} 
+		
+		<!-- ex) #{rno}의 #의 의미는 bind시킨다는 의미 내가 지정한 이름대로 값을 가져온다는 뜻 
+		$는 데이터만 가져온다는 의미라고 들었다 자세한건 더 알아보는걸로 하자.-->
+		
+	</update>
+
+	<!-- 5.게시글 수정 -->
+	<update id="update">
+		UPDATE review SET
+		title = #{title},
+		rcontent =
+		#{rcontent},
+		writer = #{writer}
+		WHERE rno =# {rno}
+	</update>
+
+	<!-- 6.게시글 삭제 -->
+	<delete id="delete" parameterType="int">
+		DELETE FROM review
+		WHERE rno = #{rno}
+	</delete>
+</mapper>

@@ -1,0 +1,48 @@
+package beauty.dao;
+
+import java.util.List;
+
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import board.ReviewDTO;
+
+@Repository //현 클래스를 dao bean으로 등록
+public class ReviewDAO {
+	
+	@Autowired
+	SqlSession sqlSession;
+	
+	//1.게시글 작성
+	public void create(ReviewDTO dto)throws Exception{
+		sqlSession.insert(".insert",dto);
+	}
+	
+	//3.게시글 수정
+
+		public void update(ReviewDTO dto)throws Exception{
+			sqlSession.update(".updateArticle",dto);
+		}
+		
+		//4.게시글 삭제
+		
+		public void delete(int bno)throws Exception{
+			sqlSession.delete(".deleteArticle",bno);
+		}
+
+		//5.게시글 전체 목록
+
+		public List<ReviewDTO>listAll()throws Exception{
+			return sqlSession.selectList("board.listAll");
+		}
+		
+/*		//6.게시글 조회수 증가
+
+		public void increaseViewcnt(int bno)throws Exception{
+			sqlSession.update("board.increaseViewcnt",bno);
+		}
+*/
+		
+
+}

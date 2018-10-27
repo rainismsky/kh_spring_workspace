@@ -1,0 +1,125 @@
+package beauty.controller;
+
+import java.util.List;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
+
+import org.apache.poi.util.SystemOutLogger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
+
+import beauty.model.ReviewDTO;
+import beauty.service.ReviewDAO;
+
+@Controller
+@RequestMapping("/Review/*")
+public class ReviewController {
+
+	@Autowired // 빈 객체 자동 주입
+	ReviewDAO reviewdao;
+	
+	// 게시글 목록
+	@RequestMapping("/Review/list_Review")
+	public ModelAndView list() throws Exception {
+		List<ReviewDTO> list = reviewdao.listAll();
+	System.out.println("list"+ list);
+	// ModelAndView - 모델과 뷰
+	ModelAndView mav = new ModelAndView();
+	mav.setViewName("list_Review");// view를 list.Review로 설정
+	mav.addObject("list",list);// 데이터 저장
+	
+	System.out.println("게시글 목록 출력 명령을 수행 합니다.");
+	
+	return mav; //list.Review로 List가 전달된다. 
+	}
+
+	// 게시글 작성 화면
+	// @RequestMapping("board/write.do")
+	// value="",method="전송 방식"
+	@RequestMapping(value = "write", method = RequestMethod.GET)
+	public String write() {
+		
+		System.out.println("게시글 작성 화면 출력 명령을 수행 합니다.");
+		
+		return "redirect:write_Review"; // write.jsp 이동
+	}
+	
+	// 게시글 작성 처리
+	@RequestMapping(value = "insert", method = RequestMethod.POST)
+	public String insert(@ModelAttribute ReviewDTO dto)throws Exception{
+		
+		reviewdao.create(dto);
+		System.out.println("게시글 작성 명령을 수행 합니다");
+		
+		return "list_Review";
+	}
+	
+	
+	 /* 게시글 상세 내용 조회
+	  @RequestParam:get/post방식으로 전달된 변수 1개
+	   Httpsession 세션 객체  */
+	
+	@RequestMapping(value = "/Review/view_Review", method = RequestMethod.GET)
+	public String view(@RequestParam int rno, HttpSession session, Model model) throws Exception {
+		
+		System.out.println("rno::"+ rno);
+		
+		/*reviewdao.increaseView(rno); 조회수 증가 */
+		ReviewDTO reviewDTO = new ReviewDTO();
+		reviewDTO.setRno(rno);
+		
+		List<ReviewDTO> list = reviewdao.read(reviewDTO);
+		
+		// 모델(데이터)+뷰(화면)를(을) 함께  전달하는 객체
+		/*ModelAndView mav = new ModelAndView();*/
+		// 뷰 이름
+		/*mav.setViewName("Review/view.Review");*/
+		// 뷰로 전달할 데이터
+		/*ReviewDTO reviewDTO = new ReviewDTO(); //reviewDTO타입에 ReviewDTO객체를 만들고 
+		reviewDTO.setRno(rno); //reviewDTO타입에 세터로 setRno를 가져와서 (rno) <= 매개변수에 rno 값을 저장한다.  
+		mav.addObject("dto", reviewdao.read(reviewDTO));//"dto"키값과  reviewdao.read(reviewDTO) value값을 저장(추가)한다
+*/		
+		System.out.println("list::"+ list);
+		
+		model.addAttribute("list",list); //		
+		
+		/*System.out.println("mav::"+ mav.toString()); //Test를 위해 toString으로 출력 결과를 뽑아본다.
+		*/
+		
+		/*return mav;*/
+		
+		System.out.println("게시글 조회 명령을 수행 합니다.");	
+		
+		return "view_Review";
+	}
+	
+	/* 게시글 수정
+	  	폼에서 입력한 내용들은 @ModelAttribute BoardDTO dto로 전달 */
+	
+	@RequestMapping(value = "update", method = RequestMethod.POST)
+	public String update(@ModelAttribute ReviewDTO dto)throws Exception{
+		reviewdao.update(dto);
+	
+		System.out.println("게시글 수정 명령을 수행 합니다.");
+		
+		return "redirect:list_Review";
+	}
+	
+	// 게시글 삭제
+	@RequestMapping("/delete")
+	public String delete(@RequestParam("rno") ReviewDTO rno) throws Exception {
+		reviewdao.delete(rno);
+		
+		System.out.println("게시글 삭제 명령을 수행 합니다.");
+		
+		return "redirect:list_Review";
+	}
+}

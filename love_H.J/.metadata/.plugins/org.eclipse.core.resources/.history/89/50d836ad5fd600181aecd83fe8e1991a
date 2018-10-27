@@ -1,0 +1,28 @@
+package beauty.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import beauty.dao.ReviewDAO;
+
+@Controller
+public class ReviewController {
+
+	@Autowired //빈 객체 자동 주입
+	private ReviewDAO reviewdao;
+	
+	public void setReviewDAO(ReviewDAO reviewdao) {
+		this.reviewdao = reviewdao;
+	}
+	
+	// 1.게시글 등록
+	@RequestMapping("MemberReview_list")
+	public ModelAndView list() throws Exception{
+		List<ReviewDTO> list = reviewdao.listAll();
+	}
+	
+	
+
+}

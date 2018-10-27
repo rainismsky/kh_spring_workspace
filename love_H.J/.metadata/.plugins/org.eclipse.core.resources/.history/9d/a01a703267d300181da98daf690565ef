@@ -1,0 +1,13 @@
+package beauty.model;
+
+public class ReviewDTO {
+	
+	private int rno; //글 번호
+	private String mid; //작성자
+	private String rfile; //첨부파일
+	private String rcotents; //글 내용
+	private 
+	
+	
+
+}

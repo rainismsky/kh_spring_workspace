@@ -1,0 +1,17 @@
+package beauty.model;
+
+import com.sun.jmx.snmp.Timestamp;
+
+public class ReviewDTO {
+	
+	private int mo; //글 번호
+	private String mid; //작성자
+	private String rfile; //첨부 파일
+	private String rcontents; //글 내용
+	private Timestamp r_regdate; //작성일
+	private String r_grade; //작성일
+	private String eid; //답변 작성자(업체 ID)
+	private String ra_contents; //답글 내용
+	private Timestamp ra_regdate; //답글 작성일
+
+}

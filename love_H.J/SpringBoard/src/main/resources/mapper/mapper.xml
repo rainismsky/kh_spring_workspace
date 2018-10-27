@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="board">
+	<insert id="insert" parameterType="spring.model.BoardDto">
+		insert into board(no,name,pwd,title,content,filename,bdate) values(
+			board_no.nextval,#{name},#{pwd},#{title},#{content},#{filename},sysdate
+		)
+	</insert>
+	
+	<select id="list" parameterType="map" resultType="spring.model.BoardDto">
+		select no,name,pwd,title,content,filename, to_char(bdate, 'yyyy-MM-dd') as bdate, vcount, r from 
+		(select no,name,pwd,title,content,filename, bdate, vcount, rownum r from 
+		(select no,name,pwd,title,content,filename, bdate, vcount  from board order by no desc) order by no desc) where r between #{start} and #{end}
+	</select>
+	
+	<select id="searchList" parameterType="Map" resultType="spring.model.BoardDto">
+		select no,name,pwd,title,content,filename, to_char(bdate, 'yyyy-MM-dd') as bdate, vcount, r from 
+		(select no,name,pwd,title,content,filename, bdate, vcount, rownum r from 
+		(select no,name,pwd,title,content,filename, bdate, vcount  from board order by no desc) order by no desc) where r between #{start} and #{end} and (content like  '%'||#{search}||'%' or title like '%'||#{search}||'%')
+	</select>
+	
+	<select id="detail" parameterType="String" resultType="spring.model.BoardDto">
+		select no,name,pwd,title,content,filename,to_char(bdate, 'yyyy-MM-dd')as bdate, vcount from board where no=#{no}
+	</select>
+	<update id="viewUpdate" parameterType="String">
+		update board set vcount=vcount+1 where no=#{no}
+	</update>
+	
+	<update id="update" parameterType="spring.model.BoardDto">
+		update board set title=#{title},content=#{content},filename=#{filename},bdate=sysdate where no=#{no}
+	</update>
+	<select id="count" resultType="int">
+		select count(*) from board
+	</select>
+	<select id="searchCount" parameterType="String" resultType="int">
+		select count(*) from board where content = #{search} or title = #{search}
+	</select>
+	
+	<delete id="delete" parameterType="String">
+		delete from board where no=#{no}
+	</delete>
+	
+	
+</mapper>

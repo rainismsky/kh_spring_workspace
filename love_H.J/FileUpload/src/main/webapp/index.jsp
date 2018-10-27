@@ -1,0 +1,12 @@
+<%@ page contentType="text/html; charset=UTF-8" %>
+
+<html>
+<body>
+
+<h2>Hello World!</h2>
+
+<a href="report/ajaxUpload.do">File Upload</a></br>
+
+</body>
+</html>
+

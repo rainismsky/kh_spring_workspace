@@ -1,0 +1,119 @@
+package beauty.model;
+
+//업체
+public class EntPriseReviewDTO {
+	
+	private String eid; //id 
+	private String pwd; //pw
+	private String e_name; //이름
+	private String e_birth; //생년월일
+	private String e_num; //대표 휴대폰
+	private String e_email; //이메일
+	private String ent_name; //업체명
+	private String ent_num; //업체 전화번호
+	private String ent_address; //업체 주소 
+	private String ent_zipcode; //우편 번호
+	private String ent_type; //업종
+	private String ent_regnum; //사업자 등록 번호
+	private String ent_open; //open time
+	private String ent_close; //close time
+	private String fixed_closure; //정기 휴무일
+	private String theme; //테마
+	
+	public String getEid() {
+		return eid;
+	}
+	public void setEid(String eid) {
+		this.eid = eid;
+	}
+	public String getPwd() {
+		return pwd;
+	}
+	public void setPwd(String pwd) {
+		this.pwd = pwd;
+	}
+	public String getE_name() {
+		return e_name;
+	}
+	public void setE_name(String e_name) {
+		this.e_name = e_name;
+	}
+	public String getE_birth() {
+		return e_birth;
+	}
+	public void setE_birth(String e_birth) {
+		this.e_birth = e_birth;
+	}
+	public String getE_num() {
+		return e_num;
+	}
+	public void setE_num(String e_num) {
+		this.e_num = e_num;
+	}
+	public String getE_email() {
+		return e_email;
+	}
+	public void setE_email(String e_email) {
+		this.e_email = e_email;
+	}
+	public String getEnt_name() {
+		return ent_name;
+	}
+	public void setEnt_name(String ent_name) {
+		this.ent_name = ent_name;
+	}
+	public String getEnt_num() {
+		return ent_num;
+	}
+	public void setEnt_num(String ent_num) {
+		this.ent_num = ent_num;
+	}
+	public String getEnt_address() {
+		return ent_address;
+	}
+	public void setEnt_address(String ent_address) {
+		this.ent_address = ent_address;
+	}
+	public String getEnt_zipcode() {
+		return ent_zipcode;
+	}
+	public void setEnt_zipcode(String ent_zipcode) {
+		this.ent_zipcode = ent_zipcode;
+	}
+	public String getEnt_type() {
+		return ent_type;
+	}
+	public void setEnt_type(String ent_type) {
+		this.ent_type = ent_type;
+	}
+	public String getEnt_regnum() {
+		return ent_regnum;
+	}
+	public void setEnt_regnum(String ent_regnum) {
+		this.ent_regnum = ent_regnum;
+	}
+	public String getEnt_open() {
+		return ent_open;
+	}
+	public void setEnt_open(String ent_open) {
+		this.ent_open = ent_open;
+	}
+	public String getEnt_close() {
+		return ent_close;
+	}
+	public void setEnt_close(String ent_close) {
+		this.ent_close = ent_close;
+	}
+	public String getFixed_closure() {
+		return fixed_closure;
+	}
+	public void setFixed_closure(String fixed_closure) {
+		this.fixed_closure = fixed_closure;
+	}
+	public String getTheme() {
+		return theme;
+	}
+	public void setTheme(String theme) {
+		this.theme = theme;
+	}
+}

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="epurchase">
+
+	<select id="list" resultType="purchase.PurchaseDTO">
+		select pc_separate,pc_name,pc_quantity,pc_sum,pc_buydate,pc_state from purchase
+	</select>
+
+	<insert id="insert" parameterType="purchase.PurchaseDTO">
+		insert into
+		purchase(pc_no,pc_separate,pc_name,pc_quantity,pc_sum,pc_buydate,pc_state) values
+		(purchase_no_grp.nextval,#{pc_separate},#{pc_name},#{pc_quantity},#{pc_sum},#{pc_buydate},#{pc_state})
+	</insert>
+
+	<select id="detail" parameterType="int"
+		resultType="purchase.PurchaseDTO">
+		select * from purchase where pc_no = #{pc_no}
+	</select>
+
+
+	<select id="selectpage" parameterType="map"
+		resultType="purchase.PurchaseDTO">
+		<![CDATA[select pc_no,pc_separate,pc_name,pc_quantity,pc_sum,pc_buydate,pc_state, r from (select
+		pc_no,pc_separate,pc_name,pc_quantity,pc_sum,pc_buydate,pc_state,rownum r from purchase)
+		where r>=#{startRow} and r<=#{endRow} order by pc_buydate desc]]>
+	</select>
+
+	<select id="count" resultType="int">
+		select count(*) from purchase
+	</select>
+	
+
+	<select id="listpc_separate" resultType="String">
+		select distinct pc_separate from purchase order by pc_separate asc
+	</select>
+
+	<select id="listpc_name" parameterType="String" resultType="map">
+		select distinct pc_name from purchase 
+		where pc_separate = #{pc_separate} order by pc_name asc
+	</select>
+
+</mapper>
+
+
+	

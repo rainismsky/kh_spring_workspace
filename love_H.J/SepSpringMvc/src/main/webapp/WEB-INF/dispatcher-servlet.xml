@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	
+	<context:annotation-config/>
+	<mvc:annotation-driven>
+		<mvc:message-converters>
+		<bean class="org.springframework.http.converter.StringHttpMessageConverter">
+			<property name="supportedMediaTypes">
+				<list>
+					<value>text/html;charset=UTF-8</value>
+				</list>
+			</property>
+		</bean>
+		</mvc:message-converters>
+	</mvc:annotation-driven>
+	
+	<bean class="spring.controller.SimpleConverterController"/>
+	
+	<bean class="spring.controller.CityController"/>
+	
+	<bean class="spring.emp.EmpController"/>
+	
+	
+	<bean id="viewResolver"
+	class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	<property name="prefix" value="/WEB-INF/views/"/>
+	<property name="suffix" value=".jsp"/>
+	</bean>
+	
+	<bean id="helloController" class="spring.controller.HelloController"/>
+
+	<bean id="viewResolver2" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/views/" />
+		<property name="suffix" value=".jsp"/>
+	</bean>
+	
+	<bean id="newArticleController" class="spring.controller.NewArticleController" p:articleService-ref="articleService"/>
+	
+	<bean id="articleService" class="spring.service.ArticleService"/>
+	
+	<bean class="spring.controller.OrderController"/>
+	
+	<bean id="searchController" class="spring.controller.SearchController"/>
+	
+	<bean id="cookieController" class="spring.controller.CookieController"/>
+	
+	<bean class="spring.controller.GameSearchController" p:searchService-ref="searchService"/> 
+	
+	<bean id="searchService" class="spring.service.SearchService"/> 
+	
+	<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
+		<property name="alwaysUseFullPath" value="true"/>
+	</bean>
+	
+	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+		<property name="alwaysUseFullPath" value="true"/>
+	</bean>
+	
+	<bean class="spring.controller.CharacterInfoController"/>
+	
+	<bean class="spring.controller.CreateAccountController"/>
+	
+	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basenames">
+			<list>
+				<value>messages.validation</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="commonLogger" class="spring.common.CommonLoggerImpl" />
+<bean id="authenticator" class="spring.service.MockAuthenticator"
+		p:commonLogger-ref="commonLogger" />
+
+<bean class="spring.controller.LoginController">
+	<property name="authenticator" ref="authenticator" />
+</bean>
+
+<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
+
+<bean class="spring.controller.ReportSubmissionController" />
+
+<bean class="spring.controller.QueryLogController"/>
+
+<bean class="spring.controller.EventController"/>
+
+<bean class="spring.board.BoardController"/>
+
+<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
+	<property name="alwaysUseFullPath" value="true"/>
+	<property name="interceptors">
+		<list>
+			<ref bean="eventExpirationCheckInterceptor"/>
+		</list>
+	</property>
+</bean>
+
+
+<bean id="eventExpirationCheckInterceptor" class="spring.interceptor.EventExpirationCheckInterceptor" />
+
+<bean class="spring.controller.ArithmeticOperatorController"/>
+
+<bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+	<property name="exceptionMappings">
+		<props>
+			<prop key="java.lang.ArithmeticException">
+				error/mathException
+			</prop>
+			<!-- <prop key="java.lang.Exception">
+				error/exception
+			</prop> -->
+		</props>
+	</property>
+
+	</bean>
+</beans>

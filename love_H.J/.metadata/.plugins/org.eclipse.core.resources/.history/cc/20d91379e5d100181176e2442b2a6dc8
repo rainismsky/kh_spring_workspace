@@ -1,0 +1,123 @@
+package member;
+
+import java.util.List;
+
+import org.apache.log4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+/* 
+ 	*컨트롤러(흐름을 제어)
+ 
+ 1)회원 정보 수정처리 mapping(member/update.do)
+ 
+ 2)pw check
+	if(수청 처리후 전체 회원 목록 페이지로 redirect)
+	else(다시 동일한 화면을 출력하기 위해 가입일자,수정일자 그리고 불일이 문구 model에 저장,
+		상세 보기화면으로 포워드)
+ 
+ 3)회원 정보 삭제처리 mapping(member/delete.do)
+ 
+ 4)pw check
+   if(삭제 처리후 전체 회원 목록 페에지로 redirect)else(불일치문구 출력,상세보기화면으로 포워드)*/
+
+@Controller // 현재 클레스를 controller bean에 등록
+public class MemberController { 
+
+	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
+
+//MemberService 스프링에 객체를 생성해 주입
+	@Autowired
+	MemberService memberService;
+
+	// 1.회원 목록
+	// url pattern mapping
+
+	@RequestMapping("member/list.do")
+	public String memberList(Model model) {
+		// controller => service => dao요청
+		List<MemberVO> list = memberService.memberList();
+		model.addAllAttributes("list", list);
+		return "member/member_list";
+	}
+
+	// 2_1.회원 등록 페이지 이동
+	@RequestMapping("member/write.do")
+	public String memberWrite() {
+		return "member/member_write";
+	}
+
+	// 2_2. 회원 등록 처리 후 => 회원list로 redirect
+	// @ModelAttribute에 폼에서 입력한 데이터가 저장됨.
+	@RequestMapping("member/insert.do")
+
+	// *폼에서 입력한 데이터를 받아오는 법 3가지
+
+	/*
+	 * public String memberInsert(HttpServlet request) { public String
+	 * memberInsert(String userId,String userPw,String userName,String userEmail) {
+	 */
+	public String memberInsert(@ModelAttribute MemberVO vo) {
+		// 테이블에 레코드 입력
+		memberService.insertMember(vo);
+		// *(/)의 유무 차이
+		// /member/list.do : 루트 디렉토리 기준
+		// member/list.do : 현재 디렉토리 기준
+		// member_list.jsp로 redirect
+		return "redirect:/member/list.do";
+	}
+
+	// 3.회원 상세정보 조회
+	@RequestMapping("member/view.do")
+	public String memberView(@RequestParam String userId, Model model) {
+		// 회원 정보를 model에 저장
+		model.addAttribute("dto", memberService.viewMember(userId));
+		// System.out.println("click한 ID 확인:"+userId);
+		logger.info("클릭한 ID:" + userID);
+		// member_view.jsp로 포워드
+		return "member/member_view";
+	}
+
+	// 4.회원 정보 수정 처리
+	@RequestMapping("member/update.do")
+	public String memberUpdate(@ModelAttribute MemberVO vo, Model model) {
+		// pw check
+		boolean result = memberService.checkPw(vo.getUserId(), vo.getuserPw());
+		if (result) { // pw가 일치하면 수정 처리 후,전체 회원 목록으로 redirect
+			memberService.updateMember(vo);
+			return "redirect:/member/list.do";
+		} else { // pw가 일치하지 않는다면,div에 불일치 문구 출력, viwe.jsp로 포워드
+			// 가입일자, 수정일자 저장
+			MemberVO vo2 = memberService.viewMember(vo.getUserId());
+			vo.setUserRegdate(vo2.getuserRegdate());
+			vo.setUserUpdatedate(vo2.getUserUpdatedate());
+			model.addAttribute("message", "pw 불일치");
+			return "member/member_view";
+		}
+	}
+	// 5.회원정보 삭제 처리
+
+	/*
+	 * @RequestMapping : url mapping
+	 * 
+	 * @Requestparam : get or post방식으로 전달된 변수 값
+	 */
+
+	@RequestMapping("member/delete.do")
+	public String memberDelete(@RequestParam String userId, @RequestParam String userPw, Model model) {
+		// pw 체크
+		boolean result = memberService.checkPw(userId, userPw);
+		if (result) {// pw가 맞으면 삭제 처리 후,전체 회원 목록으로 redirect
+			memberService.deleteMember(userId);
+			return"redirect:/member/list.do";
+		}else{//pw가 일치하지 않으면,div에 불일치 문구 출력,view.jsp로 포워드
+			model.addAttribute("dto",memberService.viewmember(userId));
+			return "member/member_view";
+			
+		}
+	}
+}
